@@ -1,0 +1,26 @@
+<div class="panel panel-info">
+	<div class="panel-heading">
+		{{note.title}}
+		<div class="pull-right">
+			<i>{{note.category.label}}</i>
+		</div>
+	</div>
+
+	<div class="panel-body">
+		{{note.content}}
+	</div>
+	<div class="panel-footer">
+		{{note.date|date:'dd-MM-yyyy'}}
+		<div class="btn btn-clear"></div>
+		<div class="pull-right">
+			<a role="button" class="btn btn-success" (click)="modifying = true;">Modify Note</a>
+			<a role="button" class="btn btn-danger" (click)="deleteNote(note)">Delete Note</a>
+			
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<div *ngIf="modifying">	
+	<noteeditor [noteEdit]="note" [categories]="categories" (close)="closeModify()"></noteeditor>
+	<br/>
+</div>

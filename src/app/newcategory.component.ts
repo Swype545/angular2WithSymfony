@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Note } from './classes';
 
+
 @Component({
-  selector: 'my-app',
-  templateUrl: 'app/templates/app.html',
+  selector: 'newcategory',
+  template: 'newCategory!',
 })
-export class AppComponent  { 
+export class NewCategoryComponent  { 
 	
 }
