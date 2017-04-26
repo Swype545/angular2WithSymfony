@@ -39,6 +39,6 @@ export class NoteEditorComponent{
 		this.noteEdit.content = this.oldNote.content;
 		this.noteEdit.date = this.oldNote.date;
 		this.noteEdit.category = this.oldNote.category;
-		//this.closeModify.emit(null);
+		this.closeModify.emit(null);
 	}
 }

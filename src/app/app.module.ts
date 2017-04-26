@@ -12,7 +12,6 @@ import { NewNoteComponent } from './newnote.component';
 import { NewCategoryComponent } from './newcategory.component';
 import { CategoryListComponent } from './categorylist.component';
 
-
 @NgModule({
   imports:      [ BrowserModule, FormsModule, RouterModule.forRoot(routes) ],
   declarations: [ AppComponent, NoteListComponent, NoteEditorComponent, NoteHandlerComponent, NewNoteComponent, NewCategoryComponent, CategoryListComponent],

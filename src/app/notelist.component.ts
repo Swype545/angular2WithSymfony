@@ -1,26 +1,38 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Note } from './classes';
 import { Category } from './classes';
+
+import { NotesService } from './notes.service'
+import { CategoriesService } from './categories.service'
 
 const CATEGORIES:Category[] = [
 	{label: "theBestCategory"},
 	{label: "theWorstOne"},
 ];
 
-const NOTES:Note[] = [
+/*const NOTES:Note[] = [
 	{id: 1,title: "my first note",content: "my first content", date: new Date(), category:CATEGORIES[1]},
 	{id: 2,title: "my second note",content: "my second content", date: new Date(), category:CATEGORIES[1]},
 	{id: 3,title: "my third note",content: "my third content", date: new Date(), category:CATEGORIES[0]}
-];
+];*/
 
 
 
 @Component({
   selector: 'notelist',
   templateUrl: 'app/templates/notelist.html',
+  providers:[NotesService, CategoriesService]
 })
-export class NoteListComponent  { 
-	notes = NOTES;
+export class NoteListComponent implements OnInit { 
+	//let notes;
+	
+	constructor(private notesService: NotesService, private categoriesService: CategoriesService){}
+	ngOnInit(): void{
+		this.notesService.loadNotes();
+		this.notes = this.notesService.getNotes();	
+	};
+	
+	//notes = NOTES;
 	categories = CATEGORIES;
 	//isModifyVisible = false;
 	/*note = new Note(0,"New Note","New Content");
