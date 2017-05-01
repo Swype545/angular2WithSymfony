@@ -1,0 +1,49 @@
+<html>
+	<body>
+		<!-- Main component for a primary marketing message or call to action -->
+		<div class="panel panel-info">	
+			
+			<div class="panel-heading">
+				Category list
+			</div>
+		
+			<div class="panel-body">
+				<table style="width:100%">
+					<tr>
+						<th>Category id</th>
+						<th>Category Name</th>
+						<th><div class="pull-right">
+								<!--<a role="button" class="btn btn-success btn-clear" href="">Edit Category</a>-->
+							</div></th>
+					</tr>
+					<!-- Boucle sur les catégories -->
+					<tr *ngFor="let category of categories">
+						<td><input [(ngModel)]="category.id" type="text" class="form-control" placeholder='ID' [disabled]="true"></td>
+						<td><input [(ngModel)]="category.label" type="text" class="form-control" placeholder='label' [disabled]="!modify"></td>
+						<td>
+							
+								<!--<a role="button" class="btn btn-success btn-clear" href="">Edit Category</a>-->
+								<button role="button" class="btn btn-danger btn-clear" href="" [disabled]="!modify">
+								<i class="fa fa-times"></i></button>
+							
+						</td>
+					</tr>
+					<tr><td> &nbsp; </td></tr>
+					<tr>
+						<td></td>
+						<td>
+							<div class="pull-right">
+								<button role="button" class="btn btn-success btn-clear" *ngIf="modify">Save Edit</button>
+								<button role="button" class="btn btn-success btn-clear" (click)="editCategories(category)" *ngIf="!modify">Edit Categories</button>
+								<button role="button" class="btn btn-danger btn-clear" (click)="cancelEdit()" *ngIf="modify">Cancel Edit</button>
+							</div>
+						<td>
+					</tr>
+				</table>
+
+			</div>
+		</div>
+	</body>
+</html>
+		
+	

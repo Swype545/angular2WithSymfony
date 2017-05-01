@@ -1,8 +1,10 @@
 export class Category{
 	public label: string;
+	public id: number;
 	
-	constructor(label:string){
+	constructor(label:string, id:number){
 		this.label = label;
+		this.id = id;
 	}
 }
 
@@ -20,9 +22,5 @@ export class Note{
 		this.date = new Date();	
 		this.category = category;
 	}
-	
-	/*addCategory(Category: category){
-		this.category = category;
-	}*/
 }
 

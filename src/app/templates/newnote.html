@@ -1,0 +1,46 @@
+<html>
+	<body>
+		<div>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-3">
+						<label>Note name</label>
+					</div>
+					<div class="col-xs-9">
+						<input [(ngModel)]="newNote.title" type="text" class="form-control" placeholder='Title'>
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-3">
+						<label>Note content</label>
+					</div>
+					<div class="col-xs-9">
+						<input [(ngModel)]="newNote.content" type="text" class="form-control" placeholder='Content'>
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-3">
+						<label>Note category</label>
+					</div>
+					<div class="col-xs-9">
+						<select class="form-control" [(ngModel)]="newNote.category"> 
+							<option *ngFor="let category of categories"  [ngValue]="category">{{category.label}}</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="pull-right">
+				<button role="button" class="btn btn-success" (click)="createNote()" [disabled]="!isFormValid()"><i class="fa fa-book" aria-hidden="true"></i>&nbsp; Create Note</button>
+			</div>
+			<br/><br/>
+		</div>
+	</body>
+</html>
+		
+	

@@ -1,0 +1,25 @@
+<html>
+	<body>
+		<!-- Main component for a primary marketing message or call to action -->
+		<div>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-3">
+						<label>Note name</label>
+					</div>
+					<div class="col-xs-9">
+						<input [(ngModel)]="newCategory.label" type="text" class="form-control" placeholder='label'>
+					</div>
+				</div>
+			</div>
+			
+			<div class="pull-right">
+				<button role="button" class="btn btn-success" (click)="createCategory()" [disabled]="!isFormValid()" routerLink="/categorylist"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp; Create Category</button>
+			</div>
+
+			<br/><br/>
+		</div>
+	</body>
+</html>
+		
+	

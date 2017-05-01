@@ -2,7 +2,7 @@
 	<body>
 		<br/>
 		<div *ngFor="let note of notes">
-			<notehandler [note]="note" [categories]="categories"></notehandler> 
+			<notehandler [note]="note" [categories]="categories" (saveNote)="saveNote()" (deleteNote)="deleteNote()"></notehandler> 
 		</div>
 	</body>
 </html>

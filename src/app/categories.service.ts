@@ -4,13 +4,30 @@ import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class CategoriesService{
-	private CATEGORIES: Category[];
+	categories: Category[] = [];
 	
-	loadCategories(){
-		this.CATEGORIES = [new Category("theBestOne"), new Category("theWorstOne")];
+	//We load every categories from the database
+	getCategories(){
+		if(this.categories.length == 0){
+			this.categories = [new Category("theBestOne", 1), new Category("theWorstOne", 2)];
+		}
+
+		return this.categories;
 	}
-	
-	getCategories(): Category[]{
-		return this.CATEGORIES;
+
+	deleteCategory(category: Category){
+		//We delete the category from the database
 	}
+
+	addCategory(category: Category){
+		//We add a category in the database
+		//alert(this.categories[0].label);
+		this.categories.push(category);
+	}
+
+	modifyCategories(categories: Category[]){
+		//We modify every categories in the database (PUT for every elements)
+	}
+
+
 }

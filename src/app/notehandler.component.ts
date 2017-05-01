@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Note } from './classes';
 import { Category } from './classes';
 
@@ -10,33 +10,20 @@ import { Category } from './classes';
 export class NoteHandlerComponent{ 
 	@Input() note: Note;
 	@Input() categories: Category[];
+	@Output() deleteNote:EventEmitter<any> = new EventEmitter();
+	@Output() SaveNote:EventEmitter<any> = new EventEmitter();
 
 	modifying = false;
 
-	
-	closeModify(){
+	//We close the window and we send a message to the parent to save the note
+	closeModify(note:Note){
 		this.modifying = false;
+		this.SaveNote.emit(note);
 	}
 	
-	/*createNote(){
-		if(this.modifying == false){
-			this.notes.push(this.actualNote);
-		}
-		this.modifyNote(this.actualNote, "edit");
-	}*/
-	
-	deleteNote(note: Note){
-		/*
-		//ENVOYER UN MESSAGE AU PARENT POUR ENLEVER L'ELEMENT DE LA LISTE
-		var index=-1;
-		for(let i in this.notes){
-			if(note == this.notes[i]){
-				index = i;
-				break;
-			}
-		}
-		this.notes.splice(index,1);*/
-		
+	//we send a message to the parent to delete the note
+	delNote(note: Note){
+		this.deleteNote.emit(note);
 	}
 	
 }

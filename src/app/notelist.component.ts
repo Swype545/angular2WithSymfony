@@ -1,22 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter } from '@angular/core';
 import { Note } from './classes';
 import { Category } from './classes';
 
 import { NotesService } from './notes.service'
 import { CategoriesService } from './categories.service'
-
-const CATEGORIES:Category[] = [
-	{label: "theBestCategory"},
-	{label: "theWorstOne"},
-];
-
-/*const NOTES:Note[] = [
-	{id: 1,title: "my first note",content: "my first content", date: new Date(), category:CATEGORIES[1]},
-	{id: 2,title: "my second note",content: "my second content", date: new Date(), category:CATEGORIES[1]},
-	{id: 3,title: "my third note",content: "my third content", date: new Date(), category:CATEGORIES[0]}
-];*/
-
-
 
 @Component({
   selector: 'notelist',
@@ -24,20 +11,27 @@ const CATEGORIES:Category[] = [
   providers:[NotesService, CategoriesService]
 })
 export class NoteListComponent implements OnInit { 
-	//let notes;
 	
+	public notes:Note[];
+	public categories:Category[];
 	constructor(private notesService: NotesService, private categoriesService: CategoriesService){}
+	
+	//We load the categories and the notes from the DB at the initialisation
 	ngOnInit(): void{
-		this.notesService.loadNotes();
-		this.notes = this.notesService.getNotes();	
+
+		this.notes = this.notesService.getNotes();
+		this.categories = this.categoriesService.getCategories();
+
 	};
-	
-	//notes = NOTES;
-	categories = CATEGORIES;
-	//isModifyVisible = false;
-	/*note = new Note(0,"New Note","New Content");
-	
-	createNote(){
-		this.notes.push(this.note);
-	}*/
+
+	//We delete the note the children sent
+	deleteNote(note: Note){
+		this.notesService.deleteNote(note);
+		//We Reload notes
+		this.notesService.getNotes();
+	}
+
+	saveNote(note:Note){
+		this.notesService.addNote(note);
+	}
 }
