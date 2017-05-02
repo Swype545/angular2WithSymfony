@@ -9,16 +9,28 @@ import { CategoriesService } from './categories.service'
   providers:[CategoriesService]
 })
 export class CategoryListComponent{ 
-	private categories:Category[];	
+	public categories:Category[];	
 	public oldCategories: Category[];
 	public modify = false;
 	constructor(private categoriesService: CategoriesService){}
 	
 	//Loading categories from the DB + creating a copy
 	ngOnInit(): void{
-		this.categories = this.categoriesService.getCategories();
-		this.oldCategories = this.deepClone(this.categories);
+		//this.categories = this.categoriesService.getCategories();
+		this.loadCategories();
 	};
+	
+	loadCategories(){
+		this.categoriesService.getCategories().subscribe(
+			data => { this.categories = data;
+					
+					//We copy the category list to be able to "cancel"
+					//We do it when the HTTP request is finished.
+					this.oldCategories = this.deepClone(this.categories);},
+			err => console.error(err),
+			() => console.log(this.categories));
+	}
+	
 
 	//Enable editing for categories
 	editCategories(){

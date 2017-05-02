@@ -10,7 +10,8 @@
 		{{note.content}}
 	</div>
 	<div class="panel-footer">
-		{{note.date|date:'dd-MM-yyyy'}}
+		<!-- We block the date for the moment because of the adaptation -->
+		{{note.date.timestamp *1000| date:'dd-MM-yyyy'}}<!--date:'dd-MM-yyyy'-->
 		<div class="btn btn-clear"></div>
 		<div class="pull-right">
 			<a role="button" class="btn btn-success" (click)="modifying = true;">Modify Note</a>

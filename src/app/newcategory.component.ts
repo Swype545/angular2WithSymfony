@@ -26,8 +26,9 @@ export class NewCategoryComponent implements OnInit {
 
 	//We create a category in the database
 	createCategory(){
-		this.categoriesService.addCategory(this.newCategory);
-
+		this.categoriesService.addCategory(this.newCategory).subscribe(
+			data => { console.log(data) },
+			err => console.error(err));
 	}
 
 }

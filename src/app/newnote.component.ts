@@ -17,10 +17,20 @@ export class NewNoteComponent implements OnInit {
 	
 	//Initialisation: loading categories + create the new object
 	ngOnInit(){
-		this.categories = this.categoriesService.getCategories();
+		this.loadCategories();
 		this.newNote = new Note(-1, "", "", new Date(), this.categories[0]);
 	}
 
+	loadCategories(){
+		this.categoriesService.getCategories().subscribe(
+			data => { this.categories = data
+					  //We Create the newNote object when the categories are loaded
+					  this.newNote.category = this.categories[0];
+					}
+			err => console.error(err),
+			() => console.log('done'));
+	}
+	
 	//Check if the form is valid
 	isFormValid(){
 		if(this.newNote.title.length >= 4 && this.newNote.content.length > 0){
@@ -30,6 +40,8 @@ export class NewNoteComponent implements OnInit {
 
 	//Add the note in the database
 	createNote(){
-		this.notesService.addNote(this.newNote);
+		this.notesService.addNote(this.newNote).subscribe(
+			data => { console.log(data) },
+			err => console.error(err));
 	}
 }

@@ -19,11 +19,27 @@ export class NoteListComponent implements OnInit {
 	//We load the categories and the notes from the DB at the initialisation
 	ngOnInit(): void{
 
-		this.notes = this.notesService.getNotes();
-		this.categories = this.categoriesService.getCategories();
+		this.loadNotes();
+		this.loadCategories();
+		//this.categories = this.categoriesService.getCategories();
 
 	};
 
+	loadNotes(){
+		this.notesService.getNotes().subscribe(
+			data => { this.notes = data },
+			err => console.error(err),
+			() => console.log(this.notes));
+
+	}
+	
+	loadCategories(){
+		this.categoriesService.getCategories().subscribe(
+			data => { this.categories = data },
+			err => console.error(err),
+			() => console.log('done'));
+	}
+	
 	//We delete the note the children sent
 	deleteNote(note: Note){
 		this.notesService.deleteNote(note);
