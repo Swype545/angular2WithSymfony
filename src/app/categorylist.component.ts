@@ -49,13 +49,21 @@ export class CategoryListComponent{
 
 	//We delete a category: we sent it to the db and we reload the elements
 	deleteCategory(category:Category){
-		this.categoriesService.deleteCategory(category);
-		this.categories = this.categoriesService.getCategories();
-	}
+		this.categoriesService.deleteCategory(category).subscribe(
+			data => { console.log(data)},
+			err => console.error(err),
+			() => console.log(this.categories));
+	};
 	
 	//We save the element in the database
-	saveEdit(){
-		this.categoriesService.modifyCategories(this.categories);
+	saveEdit(categories: Category[]){
+		
+		for(let category of categories){
+			this.categoriesService.editCategory(category).subscribe(
+			data => { console.log(data)},
+			err => console.error(err),
+			() => console.log(this.categories));
+		}
 	}
 
 	//Method to copy

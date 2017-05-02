@@ -23,7 +23,7 @@
 						<td *ngIf="modify"><input [(ngModel)]="category.label" type="text" class="form-control" placeholder='label' ></td>
 						<td>
 							<div class="pull-right">
-								<button role="button" class="btn btn-danger btn-clear" href="" [disabled]="!modify">
+								<button role="button" class="btn btn-danger btn-clear" (click)="deleteCategory(category)" [disabled]="!modify">
 									<i class="fa fa-times"></i>delete 
 								</button>
 							</div>
@@ -36,8 +36,8 @@
 						<td></td>
 						<td>
 							<div class="pull-right">
-								<button role="button" class="btn btn-success btn-clear" *ngIf="modify">Save Edit</button>
-								<button role="button" class="btn btn-success btn-clear" (click)="editCategories(category)" *ngIf="!modify">Edit Categories</button>
+								<button role="button" class="btn btn-success btn-clear" (click)="saveEdit(categories)" *ngIf="modify">Save Edit</button>
+								<button role="button" class="btn btn-success btn-clear" (click)="editCategories()" *ngIf="!modify">Edit Categories</button>
 								<button role="button" class="btn btn-danger btn-clear" (click)="cancelEdit()" *ngIf="modify">Cancel Edit</button>
 							</div>
 						<td>

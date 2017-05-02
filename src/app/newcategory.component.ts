@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from './classes';
 import { CategoriesService } from './categories.service'
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'newcategory',
   templateUrl: 'app/templates/newCategory.html',
@@ -27,7 +29,9 @@ export class NewCategoryComponent implements OnInit {
 	//We create a category in the database
 	createCategory(){
 		this.categoriesService.addCategory(this.newCategory).subscribe(
-			data => { console.log(data) },
+			data => { 
+						console.log(data); 
+					},
 			err => console.error(err));
 	}
 

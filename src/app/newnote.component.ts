@@ -26,7 +26,7 @@ export class NewNoteComponent implements OnInit {
 			data => { this.categories = data
 					  //We Create the newNote object when the categories are loaded
 					  this.newNote.category = this.categories[0];
-					}
+					},
 			err => console.error(err),
 			() => console.log('done'));
 	}
@@ -41,7 +41,7 @@ export class NewNoteComponent implements OnInit {
 	//Add the note in the database
 	createNote(){
 		this.notesService.addNote(this.newNote).subscribe(
-			data => { console.log(data) },
+			data => { console.log(data); },
 			err => console.error(err));
 	}
 }

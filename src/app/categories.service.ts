@@ -3,7 +3,6 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Category } from './classes';
 import { Observable } from 'rxjs/Rx';
 
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
@@ -13,6 +12,9 @@ export class CategoriesService{
 	private apiURL = 'http://localhost/AppWeb/Notepad/web/app_dev.php/note/API/';
 	private apiURLAllCategories = this.apiURL+"categories/showAll";
 	private apiURLAddCategory = this.apiURL+"categories/create";
+	private APIURLDeleteCategory = this.apiURL+"categories/delete";
+	private APIURLEditCategory = this.apiURL+"categories/edit";
+	
 	
 	constructor(private http: Http){};
 	
@@ -30,6 +32,8 @@ export class CategoriesService{
 
 	deleteCategory(category: Category){
 		//We delete the category from the database
+		return this.http.delete(this.APIURLDeleteCategory+"?id="+category.id,{})
+			.map((res:Response) => res.json());
 	}
 
 	addCategory(category: Category){
@@ -43,8 +47,17 @@ export class CategoriesService{
 			.map((res:Response) => res.json());
 	}
 
-	modifyCategories(categories: Category[]){
-		//We modify every categories in the database (PUT for every elements)
+	editCategory(category: Category){
+		
+			let jsCategory = {
+				"id":category.id,
+				"label":category.label
+			}
+
+			console.log(jsCategory);
+			return this.http.put(this.APIURLEditCategory, JSON.stringify(jsCategory), {})
+				.map((res:Response) => res.json());
+		
 	}
 
 

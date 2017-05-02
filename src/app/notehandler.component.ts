@@ -11,14 +11,15 @@ export class NoteHandlerComponent{
 	@Input() note: Note;
 	@Input() categories: Category[];
 	@Output() deleteNote:EventEmitter<any> = new EventEmitter();
-	@Output() SaveNote:EventEmitter<any> = new EventEmitter();
+	@Output() saveNote:EventEmitter<any> = new EventEmitter();
 
 	modifying = false;
 
 	//We close the window and we send a message to the parent to save the note
 	closeModify(note:Note){
 		this.modifying = false;
-		this.SaveNote.emit(note);
+		console.log(note);
+		this.saveNote.emit(note);
 	}
 	
 	//we send a message to the parent to delete the note

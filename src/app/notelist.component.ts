@@ -42,12 +42,16 @@ export class NoteListComponent implements OnInit {
 	
 	//We delete the note the children sent
 	deleteNote(note: Note){
-		this.notesService.deleteNote(note);
-		//We Reload notes
-		this.notesService.getNotes();
+		this.notesService.deleteNote(note).subscribe(
+			data => { console.log(data) },
+			err => console.error(err),
+			() => console.log('done'));
 	}
 
 	saveNote(note:Note){
-		this.notesService.addNote(note);
+		this.notesService.editNote(note).subscribe(
+			data => { console.log(data) },
+			err => console.error(err),
+			() => console.log('done'));
 	}
 }

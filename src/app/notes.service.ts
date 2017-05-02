@@ -20,6 +20,9 @@ export class NotesService{
 	private apiURL = 'http://localhost/AppWeb/Notepad/web/app_dev.php/note/API/';
 	private apiURLAllNotes = this.apiURL+"notes/showAll";
 	private apiURLAddNote = this.apiURL+"notes/create";
+	private apiURLEditNote = this.apiURL+"notes/edit";
+	private apiURLDeleteNote = this.apiURL+"notes/delete";
+
 	
 	//Method to load notes from API
 	getNotes(){
@@ -30,6 +33,8 @@ export class NotesService{
 
 	deleteNote(note: Note){
 		//We delete the note in the database
+		return this.http.delete(this.apiURLDeleteNote+"?id="+note.id,{})
+			.map((res:Response) => res.json());
 	}
 
 	addNote(note: Note){
@@ -43,7 +48,16 @@ export class NotesService{
 			.map((res:Response) => res.json());
 	}
 
-	modifyNote(note: Note){
+	editNote(note: Note){
 		//We modify a note in the database
+		let jsNote = {
+			"id":note.id,
+			"title": note.title,
+			"content": note.content,
+			"category": note.category.id
+		}
+		console.log(jsNote);
+		return this.http.put(this.apiURLEditNote, JSON.stringify(jsNote), {})
+			.map((res:Response) => res.json());
 	}
 }

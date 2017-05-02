@@ -22,6 +22,6 @@
 	</div>
 </div>
 <div *ngIf="modifying">	
-	<noteeditor [noteEdit]="note" [categories]="categories" (closeModify)="closeModify()"></noteeditor>
+	<noteeditor [noteEdit]="note" [categories]="categories" (closeModify)="closeModify(note)"></noteeditor>
 	<br/>
 </div>
