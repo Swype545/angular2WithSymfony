@@ -18,6 +18,7 @@ export class NoteEditorComponent{
 	ngOnInit(){
 		
 		this.oldNote = Object.assign({},this.noteEdit);
+		console.log(this.categories[0] == this.noteEdit.category);
 	}
 	
 	isFormValid(){

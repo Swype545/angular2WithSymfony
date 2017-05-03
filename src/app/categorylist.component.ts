@@ -50,7 +50,10 @@ export class CategoryListComponent{
 	//We delete a category: we sent it to the db and we reload the elements
 	deleteCategory(category:Category){
 		this.categoriesService.deleteCategory(category).subscribe(
-			data => { console.log(data)},
+			data => { 
+						console.log(data);
+						this.loadCategories();
+					},
 			err => console.error(err),
 			() => console.log(this.categories));
 	};
@@ -60,10 +63,13 @@ export class CategoryListComponent{
 		
 		for(let category of categories){
 			this.categoriesService.editCategory(category).subscribe(
-			data => { console.log(data)},
-			err => console.error(err),
-			() => console.log(this.categories));
+			data => { 
+						//console.log(category);
+						console.log(data);
+			},
+			err => console.error(err)
 		}
+		this.modify = false;
 	}
 
 	//Method to copy

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from './classes';
-import { CategoriesService } from './categories.service'
+import { CategoriesService } from './categories.service';
 
 import { Router } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class NewCategoryComponent implements OnInit { 
 	public newCategory:Category;
 
-	constructor(private categoriesService: CategoriesService){}
+	constructor(private categoriesService: CategoriesService, private router: Router){}
 	
 	//Creating the new category
 	ngOnInit(){
@@ -28,11 +28,14 @@ export class NewCategoryComponent implements OnInit {
 
 	//We create a category in the database
 	createCategory(){
+		
 		this.categoriesService.addCategory(this.newCategory).subscribe(
 			data => { 
 						console.log(data); 
+						this.router.navigate(['/categorylist']);
 					},
 			err => console.error(err));
+		
 	}
 
 }

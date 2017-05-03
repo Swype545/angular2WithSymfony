@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Note } from './classes';
 import { Category } from './classes';
+import { Router } from '@angular/router';
 import { CategoriesService } from './categories.service';
 import { NotesService } from './notes.service';
 
@@ -11,7 +12,7 @@ import { NotesService } from './notes.service';
 })
 export class NewNoteComponent implements OnInit { 
 	
-	constructor(private categoriesService: CategoriesService, private notesService: NotesService){}
+	constructor(private categoriesService: CategoriesService, private notesService: NotesService, private router: Router){}
 	public categories: Category[]= [];
 	public newNote: Note;
 	
@@ -41,7 +42,9 @@ export class NewNoteComponent implements OnInit {
 	//Add the note in the database
 	createNote(){
 		this.notesService.addNote(this.newNote).subscribe(
-			data => { console.log(data); },
+			data => { 	console.log(data); 
+						this.router.navigate(['/notelist']);
+					},
 			err => console.error(err));
 	}
 }

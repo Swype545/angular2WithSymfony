@@ -29,7 +29,7 @@
 			<div class="col-xs-9">
 				<!--<input [(ngModel)]="noteEdit.category.label" type="text" class="form-control" placeholder='My note category'>-->
 				<select class="form-control" [(ngModel)]="noteEdit.category"> 
-					<option *ngFor="let category of categories"  [ngValue]="category">{{category.label}}</option>
+					<option *ngFor="let category of categories"  [value]="category">{{category.label}}</option>
 				</select>
 			</div>
 		</div>
