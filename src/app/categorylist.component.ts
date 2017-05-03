@@ -67,8 +67,8 @@ export class CategoryListComponent{
 						//console.log(category);
 						console.log(data);
 			},
-			err => console.error(err)
-		}
+			err => console.error(err));
+		};
 		this.modify = false;
 	}
 

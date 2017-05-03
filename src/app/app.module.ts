@@ -2,6 +2,8 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
+
 import { routes } from './app.routes';
 import { HttpModule } from '@angular/http';
 
@@ -16,6 +18,7 @@ import { CategoryListComponent } from './categorylist.component';
 @NgModule({
   imports:      [ BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(routes)],
   declarations: [ AppComponent, NoteListComponent, NoteEditorComponent, NoteHandlerComponent, NewNoteComponent, NewCategoryComponent, CategoryListComponent],
-  bootstrap:    [ AppComponent]
+  bootstrap:    [ AppComponent],
+  providers:  	[{provide: LocationStrategy, useClass: HashLocationStrategy}],
 })
 export class AppModule { }
